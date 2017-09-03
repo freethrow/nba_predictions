@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+<div class="container">
+
+<h3>{{ current_user.username }} prognoze</h3>
+<div class="well huge">{{ current_user.score }} poena</div>
+
+<hr/>
+{% for pred in preds %}
+<h4><a href="{{ url_for('main.new_prediction',id=pred.series.id) }}">{{ pred.series.home }} - {{ pred.series.away }}</a></h4>
+{% if pred.series.result %}
+<p class="lead">Rezultat je bio <strong>{{ pred.series.result }}</strong>, tvoja prognoza je bila 
+<span class="label label-warning">{{ pred.predicted }}</span> - dobio si <span class="label label-warning">{{ pred.score_made }}</span> poena.
+{% else %}
+<p><strong>Čeka se konačni rezultat serije.</strong> Tvoja prognoza je bila {{ pred.predicted }}.
+{% endif %}
+<hr/>
+{% endfor %}
+
+</div>
+{% endblock %}

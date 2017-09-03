@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+<h2 class="text-center">Kako ovo radi?</h2>	
+<hr/>
+
+
+  <div class="col-md-6">
+<h4>Unošenje serija - otvorene i zatvorene</h4>
+  <p>Admini unose serije čim se sazna koje su tačno. Serije su tada <strong>otvorene</strong>. Ove serije je moguće prognozirati.</p>
+  <p>U idealnom slučaju veče pre početka serije (pre prve utakmice) admini <strong>zatvaraju</strong> seriju, u smislu da više nije moguće prognozirati. Ko je upisao - upisao je.</p>
+  <p>Spisak serija se nalazi na početnoj strani, otvoreni ili zatvoreni katanac... jasno je manje-više.</p>
+
+ <hr/>
+ <h4>Unošenje konačnog rezultata</h4>
+ <p>Admin unosi konačan rezultat serije i sistem obračunava bodove.</p>
+ <p>Proverite bodove i prijavite greške, ukoliko ih ima. Na strani <a href="{{ url_for('main.scoreboard') }}">Top Lista</a> se nalazi spisak svih učesnika.</p> <hr/>
+ <h4>Komentari</h4>
+ <p>Moguće je komentarisanje svega na prvoj strani. Ovde nema neke moderacije, warnova i slično. Ukoliko imate problema, javite mi u komentarima ili na forumu.</p>
+
+<h4>Hvala</h4>
+<p>Uiniju, Realnom, Japaja-u na testiranju, kao i Shonewizardu, Twisteru, Francisu i ostalima. Nemam pojma, trebalo bi da radi.</p>
+
+
+
+</div>
+
+  <div class="col-md-6">
+  <h4>Obračunavanje poena</h4><p>
+  Ovo smo pitali par puta već, ja sam po nekoj logici i sećanju stavio kako sam stavio:
+
+  <p>za svaku seriju u kojoj je pogođen pobednik, dobija se <strong>15</strong> poena.<hr/>
+Tačan rezultat serije donosi još <strong>10</strong> poena. Greška od jedne pobede (na primer bilo je 4:2, a prognozirao si 4:1) donosi još <strong>5</strong> poena, greška od 2 pobede donosi još <strong>2</strong> poena. <hr/>
+Pobeda gostujuće ekipe (slabiji <em>seed</em>) donosi još <strong>5</strong> poena.</p>
+<hr/>
+Promašen pobednik serije donosi <strong>0 (nula)</strong> poena.
+<hr/>Eventualno za prognoziranje uopšte može da se dodeli jedan poen kako bi se podstaklo prog
+  </p>
+<hr/>
+<h4>Pobednik</h4>
+<p>Pobednik je zvanično najbolji poznavalac plejofa NBA lige 2016. godine :)</p>
+
+
+
+  </div>
+
+
+
+
+
+
+
+</div>
+</div>
+{% endblock %}

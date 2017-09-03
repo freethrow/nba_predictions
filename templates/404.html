@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}No page{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Nema ovde ničega.</h1>
+    <br/><br/>
+    <img src="{{ url_for('static', filename='km.jpg') }}" alt="">
+    <p class="lead">error404karlmalone</p>
+</div>
+{% endblock %}

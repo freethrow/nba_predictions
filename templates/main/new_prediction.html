@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+<div class="container">
+<div class="jumbotron">
+<h3>{{ series.home }} - {{ series.away }}</h3>
+<p>Možeš samo jednom da prognoziraš rezultat serije. Veče pre početka će serija biti zatvorena i nema više mogućnosti prognoziranja.</p>
+<p>4:0 znači da prognoziraš da će {{ series.home }} pobediti sa 4:0, 2:4 znači da prognoziraš da će {{ series.away }} pobediti sa 4:2 itd.</p>
+</div>
+  <div class="col-md-4 col-md-offset-4">
+    {{ wtf.quick_form(form,button_map={'submit':'warning btn-block'}) }}
+  </div>
+	
+</div>
+{% endblock %}

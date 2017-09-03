@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+<div class="container">
+
+<h3 class="text-center">Top lista</h3>
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+
+<table class="table table-striped table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th>#</th>
+      <th>Igrač</th>
+      <th>Poena</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr {% if loop.index<11 %} class=""{% endif %}>
+      <th scope="row">{{ loop.index }}</th>
+      <td><a href="{{ url_for('main.user_page', id=user.id) }}">{{ user.username }}</a></td>
+      <td><strong>{{ user.score }}</strong></td>
+     
+    </tr>
+    {% endfor %}
+    
+  </tbody>
+</table>
+</div></div>
+
+
+<div class="ct-chart ct-perfect-fourth"></div>
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+
+{% endblock %}

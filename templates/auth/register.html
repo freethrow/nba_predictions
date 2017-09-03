@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+{% block content %}
+<div class="page-header text-center">
+    <h1>Registruj se</h1>
+    <p>username i password, bez emaila i cimanja</p>
+    <p>bilo bi dobro da username i pass budu bez razmaka, _, * i slično...</p>
+    <p>od 4 do 20 karaktera dužine</p>
+    <p><strong>slova, brojevi, _ i .</strong></p>
+</div>
+
+     <div class="col-md-4 col-md-offset-4">
+    {{ wtf.quick_form(form,button_map={'submit':'warning btn-block'}) }}
+  <br/><br/></div>
+  
+
+{% endblock %}

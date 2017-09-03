@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+<div class="container">
+<div class="jumbotron">
+<h3>{{ series.home }} - {{ series.away }}</h3>
+<p>Ti si admin i unosiš konačan (i tačan) rezultat serije.</p>
+<p>Nakon toga bi trebalo da se izračunaju poeni za sve koji su prognozirali ovu seriju.</p>
+<p class="lead text-center">Proveri ovde: <a href="http://espn.go.com/nba/standings">ESPN standings</a></p>
+</div>
+
+    {{ wtf.quick_form(form,extra_classes="form-horizontal",button_map={'submit':'warning btn-block'}) }}
+<br/>	
+</div>
+{% endblock %}
