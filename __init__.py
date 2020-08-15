@@ -7,9 +7,9 @@ from flask import Flask, flash, redirect, url_for
 
 from flask_admin import Admin
 
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager
-from flask.ext.login import login_required, current_user
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from flask_login import login_required, current_user
 from config import config
 
 from flask_bootstrap import Bootstrap
@@ -34,7 +34,7 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
-    
+
     bootstrap.init_app(app)
 
 
@@ -54,7 +54,7 @@ def create_app(config_name):
             # redirect to login page if user doesn't have access
             return redirect(url_for('login', next=request.url))
 
-    
+
     admin = Admin(app, name='nba', template_mode='bootstrap3')
     admin.add_view(NbaModelView(Series, db.session))
     admin.add_view(NbaModelView(User, db.session))
@@ -67,7 +67,7 @@ def create_app(config_name):
 
     @app.errorhandler(404)
     def page_not_found(e):
-    
+
         return render_template('404.html'), 404
 
     # logging
@@ -77,10 +77,10 @@ def create_app(config_name):
 
     file_handler = RotatingFileHandler('nba.baller.rs.log', 'a', 1 * 1024 * 1024, 10)
     file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
-    
+
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
-    
+
 
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
@@ -90,6 +90,6 @@ def create_app(config_name):
 
     app.debug = True
 
- 
+
 
     return app

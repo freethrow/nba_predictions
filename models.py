@@ -8,9 +8,9 @@ from datetime import datetime
 import hashlib
 from slugify import slugify
 
-from flask.ext.sqlalchemy import SQLAlchemy, orm
+from flask_sqlalchemy import SQLAlchemy, orm
 
-from flask.ext.login import UserMixin, AnonymousUserMixin
+from flask_login import UserMixin, AnonymousUserMixin
 
 from sqlalchemy.sql import func
 
@@ -75,7 +75,7 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return unicode(self.username)
 
-   
+
     @staticmethod
     def generate_fake(count=20):
         from sqlalchemy.exc import IntegrityError
@@ -105,7 +105,7 @@ class Series(db.Model):
     away = db.Column(db.Text)
     open = db.Column(db.Boolean, default = True)
     result = db.Column(db.String)
-    
+
 
 
 
@@ -127,17 +127,17 @@ class Prediction(db.Model):
     series = db.relationship('Series',  foreign_keys=[series_id])
 
     created = db.Column(db.DateTime(), default=datetime.now)
-    
+
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User',  foreign_keys=[user_id])
-    
+
     predicted = db.Column(db.String)
     score_made = db.Column(db.Integer(),default=0)
 
 
-  
-    
-    
+
+
+
 
     __table_args__ = (
         db.UniqueConstraint(series_id, user_id),
@@ -157,10 +157,10 @@ class Comment(db.Model):
     id = db.Column(db.Integer, primary_key = True)
 
     created = db.Column(db.DateTime(), default=datetime.now)
-    
+
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User',  foreign_keys=[user_id])
-    
+
     body = db.Column(db.Text())
 
     def __repr__(self):
@@ -170,7 +170,7 @@ class Comment(db.Model):
 
 
 def calculate_score(pred, actual):
-    
+
 
 
     pred_home = int(pred.split(':')[0])
@@ -198,7 +198,7 @@ def calculate_score(pred, actual):
             score+=2
 
         if (actual_home-actual_away)<0:
-            score+=5
+            score+=1
 
 
     return score

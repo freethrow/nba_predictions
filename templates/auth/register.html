@@ -1,20 +1,35 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-
+<style>
+    .registration{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        max-width:450px;
+        margin:0 auto;
+    }
+</style>
 
 
 {% block content %}
-<div class="page-header text-center">
-    <h1>Registruj se</h1>
-    <p>username i password, bez emaila i cimanja</p>
+
+<div class="card border-warning mb-3 text-center">
+  <div class="card-header">Napravi nalog da bi mogao da igraš</div>
+  <div class="card-body">
+    <h4 class="card-title">Registruj se</h4>
+    <p class="card-text"><p>username i password, bez emaila i cimanja</p>
     <p>bilo bi dobro da username i pass budu bez razmaka, _, * i slično...</p>
     <p>od 4 do 20 karaktera dužine</p>
-    <p><strong>slova, brojevi, _ i .</strong></p>
+    <p><strong>slova, brojevi, _ i .</strong></p></p>
+  </div>
 </div>
 
-     <div class="col-md-4 col-md-offset-4">
+
+<div class="registration">
+
     {{ wtf.quick_form(form,button_map={'submit':'warning btn-block'}) }}
-  <br/><br/></div>
-  
+
+  </div>
 
 {% endblock %}

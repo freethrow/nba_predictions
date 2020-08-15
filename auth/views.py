@@ -3,7 +3,7 @@
 
 
 from flask import render_template, redirect, request, url_for, flash, session
-from flask.ext.login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required, current_user
 from . import auth
 from ..models import User
 from .forms import LoginForm,RegisterForm, SetPassForm
@@ -68,7 +68,7 @@ def setpass():
         user = form.username.data
         #user = User.query.filter_by(username=user_name).first()
         user.password = form.new_pass.data
-            
+
         db.session.add(user)
         db.session.commit()
 

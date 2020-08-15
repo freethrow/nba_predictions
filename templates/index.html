@@ -4,16 +4,17 @@
 
 
 {% block content %}
-<div class="container">
+
 <div class="jumbotron">
-  Prošle godine je radilo.<hr/>
-  Javite mi dole da li bi neko hteo da pomogne oko administriranja - nema šanse da ja ovo detaljno i ažurno ispratim sam.<hr/>
-  Ukoliko sam pogrešio nešto, oko parova, seedova i slično - javite. Proverite bodovanje - da li odgovara i da li vam tačno sabira.
+  <h1 class="display-3">Prognoza NBA 2020!</h1>
+  <p class="lead"> Javite mi dole da li bi neko hteo da pomogne oko administriranja - nema šanse da ja ovo detaljno i ažurno ispratim sam.</p>
+  <hr class="my-4">
 
+  <p class="lead">
+    <a class="btn btn-outline-warning btn-lg" href="/help" role="button">Kako radi?</a>
+    <a class="btn btn-outline-warning btn-lg ml-auto" href="/auth/register" role="button">Napravi nalog</a>
+  </p>
 </div>
-
-
-
 
 <hr/>
 
@@ -21,14 +22,15 @@
 <div class="series">
 {% if series %}
 <h4 class="text-center">Otvorene serije</h4>
-<ul class="list-unstyled biglink text-center"> 
-{% for ser in series %}
-
-	<li><a href="{{ url_for('main.new_prediction', id=ser.id) }}"><i class="fa fa-unlock" aria-hidden="true"></i> {{ ser.home }} - {{ ser.away }}</a></li>
-
-
+<ul class="list-group">
+    {% for ser in series %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+   <a href="{{ url_for('main.new_prediction', id=ser.id) }}"><i class="fa fa-unlock" aria-hidden="true"></i> {{ ser.home }} - {{ ser.away }}</a>
+  </li>
 {% endfor %}
 </ul>
+
+
 {% else %}
 <h4 class="text-center">Nema otvorenih serija</h4>
 <hr/>
@@ -38,10 +40,10 @@
 <div class="series">
 {% if closed_series %}
 <h4 class="text-center">Zatvorene serije</h4>
-<ul class="list-unstyled biglink text-center"> 
+<ul class="list-group">
 {% for ser in closed_series %}
-
-  <li><a href="{{ url_for('main.new_prediction', id=ser.id) }}"><i class="fa fa-lock" aria-hidden="true"></i> {{ ser.home }} - {{ ser.away }} {% if ser.result %}{{ ser.result }}{% endif %}</a></li>
+<li class="list-group-item d-flex justify-content-between align-items-center">
+<a href="{{ url_for('main.new_prediction', id=ser.id) }}"><i class="fa fa-lock" aria-hidden="true"></i> {{ ser.home }} - {{ ser.away }} {% if ser.result %}{{ ser.result }}{% endif %}</a></li>
 
 
 {% endfor %}
@@ -56,10 +58,8 @@
 
 
 
-<div class="well text-center">
+<div class="text-center">
 <h4><a href="{{ url_for('main.help') }}">Kako radi?</a></h4>
-
-
 </div>
 
 
@@ -71,41 +71,32 @@
 
 
 {% if not current_user.is_authenticated %}
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-  <a href="{{ url_for('auth.register') }}" class="btn btn-block btn-lg btn-warning">Registruj se</a><hr/>
-  <a href="{{ url_for('auth.login') }}" class="btn btn-block btn-lg btn-warning">Uloguj se</a> <br/> <br/>
-  </div>
-  <br/>
+<div class="text-center">
+<a href="{{ url_for('auth.register') }}"class="btn btn-outline-warning btn-lg p-4 m-5">Registruj se</a>
+<a href="{{ url_for('auth.login') }}"class="btn btn-outline-warning btn-lg p-4 m-5">Uloguj se</a>
 </div>
 
 {% else %}
-<div class="row">
-<h4 class="text-center"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Komentari + pohvale + sugestije + nevaljaništa</h4>
-  <div class="col-md-6 col-md-offset-3">
+
+<h4 class="text-center">Komentari + pohvale + sugestije + nevaljaništa</h4>
+
     {{ wtf.quick_form(form,button_map={'submit':'warning btn-block'}) }}
-  </div>
-  <br/>
-</div>
 
-<hr/>
-
+<div class="comments">
 {% for comment in comments %}
 
-
-
-
-<blockquote>
-  <p class="comment">{{ comment.body }}</p>
-  <footer>{{ comment.user.username }}<cite>{{ comment.created.strftime('%d/%m/%Y') }}  <strong>{{ comment.created.strftime('%H:%M') }}</strong></cite>
-  </footer>
+<div class="comment">
+<blockquote class="blockquote text-right">
+  <p class="mb-0">{{ comment.body }}</p>
+  <div class="blockquote-footer">{{ comment.user.username }}<cite>{{ comment.created.strftime('%d/%m/%Y') }}  <strong>{{ comment.created.strftime('%H:%M') }}</strong></cite></div>
 </blockquote>
+</div>
 
 {% endfor %}
-
+</div>
 
 {% endif %}
-</div>
+
 {% endblock %}
 
 

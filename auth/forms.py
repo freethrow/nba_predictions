@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from flask.ext.wtf import Form
+from flask_wtf import Form
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import Required, Length, Email
 from wtforms.validators import Required, ValidationError, Email, Length, Regexp, EqualTo
@@ -10,7 +10,7 @@ from slugify import slugify
 from ..models import User
 
 def all_users():
-    
+
     return User.query.all()
 
 class LoginForm(Form):
@@ -38,14 +38,14 @@ class RegisterForm(Form):
 
 
     def validate_username(self, field):
-        
+
         if User.query.filter_by(username=field.data).first():
             print "Already"
             raise ValidationError(u'Ovo korisničko ime je već zauzeto.')
 
 
 class SetPassForm(Form):
-    username = QuerySelectField(u'Username?',query_factory=all_users) 
+    username = QuerySelectField(u'Username?',query_factory=all_users)
     new_pass = StringField(u'New password', validators=[Required(),Length(4,20)])
-    
+
     submit = SubmitField(u'Izmeni pass')

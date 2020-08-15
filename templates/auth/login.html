@@ -1,27 +1,34 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
-{% block title %}Flasky - Login{% endblock %}
+{% block title %}NBA 2020 login{% endblock %}
+<style>
+    .login{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        max-width:450px;
+        margin:0 auto;
+    }
+</style>
+
 
 {% block content %}
-<div class="page-header text-center">
-    <h1>Uloguj se</h1>
-    <p>username + password</p>
-</div>
-<div class="row">
 
-  <div class="col-md-4 col-md-offset-4">
-    {{ wtf.quick_form(form,button_map={'submit':'warning btn-block'}) }}
-
-    <hr/>
-
-    <a class="btn btn-success btn-block" href="{{ url_for('auth.register') }}">Registruj se</a>
+<div class="card border-warning mb-3 text-center">
+  <div class="card-header">Uloguj se da bi mogao da igraš</div>
+  <div class="card-body">
+    <h4 class="card-title">Uloguj se</h4>
+    <p class="card-text"><p>username i password, bez emaila i cimanja</p>
   </div>
 </div>
-<hr/>
 
 
+<div class="registration">
 
+   {{ wtf.quick_form(form,button_map={'submit':'warning btn-block'}) }}
 
 </div>
+
 {% endblock %}

@@ -4,19 +4,13 @@
 
 
 {% block content %}
-<div class="container">
 
-
-
-
-<div class="row text-center">
+<div class="registration">
 <h3>Unošenje nove serije</h3>
 <p>Home - ekipa koja ima prednost (bolji <em>seed</em>)</p>
 
-  <div class="col-md-4 col-md-offset-4">
+
 
     {{ wtf.quick_form(form,extra_classes="form-horizontal",button_map={'submit':'warning btn-block'}) }}
-</div>
-</div>
 </div>
 {% endblock %}
